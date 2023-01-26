@@ -1,0 +1,29 @@
+{
+  "name": "realState",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightbarbara/realState.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lightbarbara/realState/issues"
+  },
+  "homepage": "https://github.com/lightbarbara/realState#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "prisma": "^4.9.0"
+  },
+  "devDependencies": {
+    "@prisma/client": "^4.9.0",
+    "typescript": "^4.9.4"
+  }
+}
