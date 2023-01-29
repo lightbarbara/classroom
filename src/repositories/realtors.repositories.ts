@@ -17,6 +17,11 @@ export async function createRealtorQuery(realtor: Realtor): Promise<void> {
     })
 }
 
+export async function getAllRealtorsQuery(): Promise<realtors[]> {
+    const realtors = await prisma.realtors.findMany()
+    return realtors
+}
+
 export async function getRealtorByIdQuery(id: number): Promise<realtors> {
     const realtor = await prisma.realtors.findFirst({
         where: {
