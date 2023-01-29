@@ -3,7 +3,7 @@ import { getBuyerByIdService } from "../services/buyers.services.js";
 
 export async function validateBuyerId(req: Request, res: Response, next: NextFunction): Promise<Response> {
 
-    const { id } = req.params
+    const id = req.params.id || req.body.buyerId
 
     try {
 

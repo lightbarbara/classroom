@@ -3,7 +3,7 @@ import { getRealtorByIdService } from "../services/realtors.services.js";
 
 export async function validateRealtorId(req: Request, res: Response, next: NextFunction): Promise<Response> {
 
-    const { id } = req.params
+    const id = req.params.id || req.body.realtorId
 
     try {
 

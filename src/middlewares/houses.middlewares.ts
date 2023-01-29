@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express"
-import { getHouseByIdService } from "../services/houses.services"
+import { getHouseByIdService } from "../services/houses.services.js"
 
 export async function validateHouseId(req: Request, res: Response, next: NextFunction): Promise<Response> {
 
-    const { id } = req.params
+    const id = req.params.id || req.body.houseId
 
     try {
 

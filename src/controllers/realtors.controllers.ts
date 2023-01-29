@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Realtor } from "../protocols/realtors.protocols";
-import { createRealtorService, deleteRealtorService, getAllRealtorsService, getRealtorByIdService, updateRealtorService } from "../services/realtors.services";
+import { Realtor } from "../protocols/realtors.protocols.js";
+import { createRealtorService, deleteRealtorService, getAllRealtorsService, getRealtorByIdService, updateRealtorService } from "../services/realtors.services.js";
 
 export async function createRealtor(req: Request, res: Response): Promise<void> {
 
