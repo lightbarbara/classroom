@@ -30,3 +30,10 @@ export async function getBuyerByIdQuery(id: number): Promise<buyers> {
     })
     return buyer
 }
+
+export async function updateBuyerQuery(buyer: Buyer, id: number): Promise<void> {
+    await prisma.buyers.update({
+        where: { id },
+        data: buyer
+    })
+}
