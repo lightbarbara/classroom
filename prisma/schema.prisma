@@ -10,29 +10,27 @@ datasource db {
 model buyers {
   id           Int            @id @default(autoincrement())
   name         String
-  email        String
-  password     String
-  balance      Float          @default(0) @db.Real
+  balance      Float          @db.Real
   negotiations negotiations[]
 }
 
 model houses {
   id           Int            @id @default(autoincrement())
-  cep          String
+  cep          String         @db.VarChar(8)
   price        Float          @db.Real
   negotiations negotiations[]
 }
 
 model negotiations {
-  id        Int       @id @default(autoincrement())
-  houseId   Int?
-  buyerId   Int?
-  realtorId Int?
-  status    String    @default("on going") @db.VarChar(20)
-  rating    String
-  buyers    buyers?   @relation(fields: [buyerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  houses    houses?   @relation(fields: [houseId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  realtors  realtors? @relation(fields: [realtorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id        Int        @id @default(autoincrement())
+  houseId   Int
+  buyerId   Int
+  realtorId Int
+  status    statusType @default(on_going)
+  rating    String?
+  buyers    buyers     @relation(fields: [buyerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  houses    houses     @relation(fields: [houseId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  realtors  realtors   @relation(fields: [realtorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model realtors {
@@ -40,4 +38,10 @@ model realtors {
   name            String
   salesCommission Float          @db.Real
   negotiations    negotiations[]
+}
+
+enum statusType {
+  bought
+  on_going @map("on going")
+  failed
 }
