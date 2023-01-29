@@ -8,7 +8,10 @@ export async function createHouseQuery(house: House): Promise<void> {
     })
 }
 
-
+export async function getAllHousesQuery(): Promise<houses[]> {
+    const houses = await prisma.houses.findMany()
+    return houses
+}
 
 export async function getHouseByIdQuery(id: number): Promise<houses> {
     const house = await prisma.houses.findFirst({

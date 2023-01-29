@@ -1,10 +1,18 @@
 import { houses } from "@prisma/client"
 import { House } from "../protocols/houses.protocols.js"
-import { createHouseQuery, getHouseByIdQuery } from "../repositories/houses.repositories.js"
+import { createHouseQuery, getAllHousesQuery, getHouseByIdQuery } from "../repositories/houses.repositories.js"
 
 export async function createHouseService(house: House): Promise<void> {
 
     await createHouseQuery(house)
+
+}
+
+export async function getAllHousesService(): Promise<houses[]> {
+
+    const houses = await getAllHousesQuery()
+
+    return houses
 
 }
 
