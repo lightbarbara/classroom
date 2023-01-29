@@ -10,6 +10,7 @@ datasource db {
 model buyers {
   id           Int            @id @default(autoincrement())
   name         String
+  cpf          String         @unique @db.VarChar(11)
   balance      Float          @db.Real
   negotiations negotiations[]
 }
@@ -36,6 +37,7 @@ model negotiations {
 model realtors {
   id              Int            @id @default(autoincrement())
   name            String
+  cpf             String         @unique @db.VarChar(11)
   salesCommission Float          @db.Real
   negotiations    negotiations[]
 }

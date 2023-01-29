@@ -5,15 +5,18 @@ async function main() {
         data: [
             {
                 "name": "barbara",
-                "balance": 0
+                "cpf": "12345678901",
+                "balance": 60000
             },
             {
                 "name": "luisa",
-                "balance": 0
+                "cpf": "23456789012",
+                "balance": 60000
             },
             {
                 "name": "giovana",
-                "balance": 0
+                "cpf": "34567890123",
+                "balance": 60000
             }
         ]
     })
@@ -39,14 +42,17 @@ async function main() {
         data: [
             {
                 "name": "bianca",
+                "cpf": "45678901234",
                 "salesCommission": 0.2
             },
             {
                 "name": "roberta",
+                "cpf": "56789012345",
                 "salesCommission": 0.1
             },
             {
                 "name": "clara",
+                "cpf": "67890123456",
                 "salesCommission": 0.15
             }
         ]

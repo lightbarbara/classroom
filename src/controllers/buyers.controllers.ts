@@ -1,0 +1,35 @@
+import { Request, Response } from "express";
+import { Buyer } from "../protocols/buyers.protocols.js";
+import { createBuyerService } from "../services/buyers.services.js";
+
+export async function createBuyer(req: Request, res: Response): Promise<void> {
+
+    const buyer = req.body as Buyer
+
+    try {
+
+        await createBuyerService(buyer)
+
+        res.sendStatus(201)
+
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
+
+}
+
+export function getAllBuyers(req: Request, res: Response) {
+
+}
+
+export function getBuyerById(req: Request, res: Response) {
+
+}
+
+export function updateBuyer(req: Request, res: Response) {
+
+}
+
+export function deleteBuyer(req: Request, res: Response) {
+
+}
