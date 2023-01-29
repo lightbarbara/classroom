@@ -37,3 +37,9 @@ export async function updateBuyerQuery(buyer: Buyer, id: number): Promise<void> 
         data: buyer
     })
 }
+
+export async function deleteBuyerQuery(id: number) {
+    await prisma.buyers.delete({
+        where: { id }
+    })
+}

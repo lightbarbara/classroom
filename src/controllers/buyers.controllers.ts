@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Buyer } from "../protocols/buyers.protocols.js";
-import { createBuyerService, getAllBuyersService, getBuyerByIdService, updateBuyerService } from "../services/buyers.services.js";
+import { createBuyerService, deleteBuyerService, getAllBuyersService, getBuyerByIdService, updateBuyerService } from "../services/buyers.services.js";
 
 export async function createBuyer(req: Request, res: Response): Promise<void> {
 
@@ -72,6 +72,18 @@ export async function updateBuyer(req: Request, res: Response): Promise<void> {
 
 }
 
-export function deleteBuyer(req: Request, res: Response) {
+export async function deleteBuyer(req: Request, res: Response) {
+
+    const { id } = req.params
+
+    try {
+
+        await deleteBuyerService(parseInt(id))
+
+        res.sendStatus(204)
+
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 
 }
