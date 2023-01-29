@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { Negotiation } from "../protocols/negotiations.protocols.js";
-import { validateNegotiationDoesntExistService } from "../services/negotiations.services.js";
+import { validateNegotiationDoesntExistService, validateUserHasBalanceService } from "../services/negotiations.services.js";
 
 export async function validateNegotiationDoesntExist(req: Request, res: Response, next: NextFunction): Promise<void> {
 
@@ -21,6 +21,28 @@ export async function validateNegotiationDoesntExist(req: Request, res: Response
         }
 
         res.status(500).send(err.message)
+    }
+
+}
+
+export async function validateUserHasBalance(req: Request, res: Response, next: NextFunction): Promise<void> {
+
+    const negotiation = res.locals.negotiation as Negotiation
+
+    try {
+
+        await validateUserHasBalanceService(negotiation)
+
+        next()
+
+    } catch (err) {
+
+        if (err.name === 'notEnough') {
+            res.sendStatus(406)
+        }
+
+        res.status(500).send(err.message)
+
     }
 
 }

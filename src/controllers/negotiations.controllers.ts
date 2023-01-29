@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Negotiation } from "../protocols/negotiations.protocols.js";
-import { createNegotiationService } from "../services/negotiations.services.js";
+import { createNegotiationService, getAllNegotiationsService } from "../services/negotiations.services.js";
 
 export async function createNegotiation(req: Request, res: Response): Promise<void> {
 
@@ -19,6 +19,16 @@ export async function createNegotiation(req: Request, res: Response): Promise<vo
 }
 
 export async function getAllNegotiations(req: Request, res: Response): Promise<void> {
+
+    try {
+
+        const negotiations = await getAllNegotiationsService()
+
+        res.status(200).send(negotiations)
+
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 
 }
 
