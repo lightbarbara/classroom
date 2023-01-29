@@ -75,3 +75,12 @@ export async function getAllNegotiationsQuery() {
     })
     return negotiations
 }
+
+export async function getNegotiationByIdQuery(id: number): Promise<negotiations> {
+    const negotiation = await prisma.negotiations.findFirst({
+        where: {
+            id
+        }
+    })
+    return negotiation
+}
