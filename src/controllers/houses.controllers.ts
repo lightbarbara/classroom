@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { House } from "../protocols/houses.protocols.js";
-import { createHouseService, getAllHousesService } from "../services/houses.services.js";
+import { createHouseService, getAllHousesService, getHouseByIdService } from "../services/houses.services.js";
 
 export async function createHouse(req: Request, res: Response): Promise<void> {
 
@@ -33,6 +33,24 @@ export async function getAllHouses(req: Request, res: Response): Promise<void> {
 }
 
 export async function getHouseById(req: Request, res: Response): Promise<void> {
+
+    const { id } = req.params
+
+    try {
+
+        const house = await getHouseByIdService(parseInt(id))
+
+        res.status(200).send(house)
+
+    } catch (err) {
+
+        if (err.name === 'notFound') {
+            res.sendStatus(404)
+        }
+
+        res.status(500).send(err.message)
+
+    }
 
 }
 
