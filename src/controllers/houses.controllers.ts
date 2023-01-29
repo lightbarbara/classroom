@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { House } from "../protocols/houses.protocols.js";
-import { createHouseService, getAllHousesService, getHouseByIdService } from "../services/houses.services.js";
+import { createHouseService, getAllHousesService, getHouseByIdService, updateHouseService } from "../services/houses.services.js";
 
 export async function createHouse(req: Request, res: Response): Promise<void> {
 
@@ -55,6 +55,20 @@ export async function getHouseById(req: Request, res: Response): Promise<void> {
 }
 
 export async function updateHouse(req: Request, res: Response): Promise<void> {
+
+    const house = req.body as House
+
+    const { id } = req.params
+
+    try {
+
+        await updateHouseService(house, parseInt(id))
+
+        res.sendStatus(200)
+
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 
 }
 

@@ -1,6 +1,6 @@
 import { houses } from "@prisma/client"
 import { House } from "../protocols/houses.protocols.js"
-import { createHouseQuery, getAllHousesQuery, getHouseByIdQuery } from "../repositories/houses.repositories.js"
+import { createHouseQuery, getAllHousesQuery, getHouseByIdQuery, updateHouseQuery } from "../repositories/houses.repositories.js"
 
 export async function createHouseService(house: House): Promise<void> {
 
@@ -25,5 +25,11 @@ export async function getHouseByIdService(id: number): Promise<houses> {
     }
 
     return house
+
+}
+
+export async function updateHouseService(house: House, id: number): Promise<void> {
+
+    await updateHouseQuery(house, id)
 
 }

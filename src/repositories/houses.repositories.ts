@@ -21,3 +21,10 @@ export async function getHouseByIdQuery(id: number): Promise<houses> {
     })
     return house
 }
+
+export async function updateHouseQuery(house: House, id: number): Promise<void> {
+    await prisma.houses.update({
+        where: { id },
+        data: house
+    })
+}
