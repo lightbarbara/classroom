@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { Negotiation } from "../protocols/negotiations.protocols.js";
-import { validateNegotiationDoesntExistService, validateUserHasBalanceService } from "../services/negotiations.services.js";
+import { getNegotiationByIdService, validateNegotiationDoesntExistService, validateUserHasBalanceService } from "../services/negotiations.services.js";
 
 export async function validateNegotiationDoesntExist(req: Request, res: Response, next: NextFunction): Promise<void> {
 
@@ -43,6 +43,27 @@ export async function validateUserHasBalance(req: Request, res: Response, next: 
 
         res.status(500).send(err.message)
 
+    }
+
+}
+
+export async function validateNegotiationId(req: Request, res: Response, next: NextFunction): Promise<Response> {
+
+    const id = req.params.id
+
+    try {
+
+        await getNegotiationByIdService(parseInt(id))
+
+        next()
+
+    } catch (err) {
+
+        if (err.name === 'notFound') {
+            return res.sendStatus(404)
+        }
+
+        return res.status(500).send(err.message)
     }
 
 }
