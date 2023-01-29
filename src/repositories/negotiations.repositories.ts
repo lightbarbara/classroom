@@ -84,3 +84,10 @@ export async function getNegotiationByIdQuery(id: number): Promise<negotiations>
     })
     return negotiation
 }
+
+export async function updateNegotiationQuery(negotiation: Negotiation, id: number): Promise<void> {
+    await prisma.negotiations.update({
+        where: { id },
+        data: negotiation
+    })
+}
