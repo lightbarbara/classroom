@@ -15,3 +15,8 @@ export async function createBuyerQuery(buyer: Buyer) {
         data: buyer
     })
 }
+
+export async function getAllBuyersQuery() {
+    const buyers = await prisma.buyers.findMany()
+    return buyers
+}

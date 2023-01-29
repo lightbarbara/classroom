@@ -1,6 +1,6 @@
 import { buyers } from "@prisma/client";
 import { Buyer } from "../protocols/buyers.protocols.js";
-import { createBuyerQuery, getBuyerByCpfQuery } from "../repositories/buyers.repositories.js";
+import { createBuyerQuery, getAllBuyersQuery, getBuyerByCpfQuery } from "../repositories/buyers.repositories.js";
 
 export async function getBuyerByCpfService(cpf: string): Promise<buyers> {
     const cpfExistsOnBuyers = await getBuyerByCpfQuery(cpf)
@@ -18,7 +18,11 @@ export async function createBuyerService(buyer: Buyer): Promise<void> {
 
 }
 
-export function getAllBuyersService() {
+export async function getAllBuyersService() {
+
+    const buyers = await getAllBuyersQuery()
+
+    return buyers
 
 }
 
