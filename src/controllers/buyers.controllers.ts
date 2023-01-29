@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Buyer } from "../protocols/buyers.protocols.js";
-import { createBuyerService, getAllBuyersService } from "../services/buyers.services.js";
+import { createBuyerService, getAllBuyersService, getBuyerByIdService } from "../services/buyers.services.js";
 
 export async function createBuyer(req: Request, res: Response): Promise<void> {
 
@@ -18,7 +18,7 @@ export async function createBuyer(req: Request, res: Response): Promise<void> {
 
 }
 
-export async function getAllBuyers(req: Request, res: Response) {
+export async function getAllBuyers(req: Request, res: Response): Promise<void> {
 
     try {
 
@@ -32,7 +32,25 @@ export async function getAllBuyers(req: Request, res: Response) {
 
 }
 
-export function getBuyerById(req: Request, res: Response) {
+export async function getBuyerById(req: Request, res: Response) {
+
+    const { id } = req.params
+
+    try {
+
+        const buyer = await getBuyerByIdService(parseInt(id))
+
+        res.status(200).send(buyer)
+
+    } catch (err) {
+
+        if (err.name === 'notFound') {
+            res.sendStatus(404)
+        }
+
+        res.status(500).send(err.message)
+
+    }
 
 }
 

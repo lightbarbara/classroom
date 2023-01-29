@@ -6,11 +6,13 @@ export default async function validateCpf(req: Request, res: Response, next: Nex
 
     const { cpf } = req.body
 
+    const { id } = req.params
+
     try {
 
-        await getBuyerByCpfService(cpf)
+        await getBuyerByCpfService(cpf, parseInt(id))
 
-        await getRealtorByCpfService(cpf)
+        await getRealtorByCpfService(cpf, parseInt(id))
 
         next()
 
