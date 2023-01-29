@@ -72,7 +72,7 @@ export async function updateBuyer(req: Request, res: Response): Promise<void> {
 
 }
 
-export async function deleteBuyer(req: Request, res: Response) {
+export async function deleteBuyer(req: Request, res: Response): Promise<void> {
 
     const { id } = req.params
 
