@@ -37,3 +37,9 @@ export async function updateRealtorQuery(realtor: Realtor, id: number): Promise<
         data: realtor
     })
 }
+
+export async function deleteRealtorQuery(id: number): Promise<void> {
+    await prisma.realtors.delete({
+        where: { id }
+    })
+}

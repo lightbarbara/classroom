@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Realtor } from "../protocols/realtors.protocols";
-import { createRealtorService, getAllRealtorsService, getRealtorByIdService, updateRealtorService } from "../services/realtors.services";
+import { createRealtorService, deleteRealtorService, getAllRealtorsService, getRealtorByIdService, updateRealtorService } from "../services/realtors.services";
 
 export async function createRealtor(req: Request, res: Response): Promise<void> {
 
@@ -32,7 +32,7 @@ export async function getAllRealtors(req: Request, res: Response): Promise<void>
 
 }
 
-export async function getRealtorById(req: Request, res: Response) {
+export async function getRealtorById(req: Request, res: Response): Promise<void> {
 
     const { id } = req.params
 
@@ -54,7 +54,7 @@ export async function getRealtorById(req: Request, res: Response) {
 
 }
 
-export async function updateRealtor(req: Request, res: Response) {
+export async function updateRealtor(req: Request, res: Response): Promise<void> {
 
     const realtor = req.body as Realtor
 
@@ -72,6 +72,18 @@ export async function updateRealtor(req: Request, res: Response) {
 
 }
 
-export async function deleteRealtor(req: Request, res: Response) {
+export async function deleteRealtor(req: Request, res: Response): Promise<void> {
+
+    const { id } = req.params
+
+    try {
+
+        await deleteRealtorService(parseInt(id))
+
+        res.sendStatus(204)
+
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 
 }
