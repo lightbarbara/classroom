@@ -1,6 +1,5 @@
-import { negotiations } from "@prisma/client";
 import { Negotiation } from "../protocols/negotiations.protocols.js";
-import { createNegotiationQuery, getAllNegotiationsQuery, getNegotiationByIdQuery, updateNegotiationQuery, validateNegotiationDoesntExistQuery, validateUserHasBalanceQuery } from "../repositories/negotiations.repositories.js";
+import { createNegotiationQuery, deleteNegotiationQuery, getAllNegotiationsQuery, getNegotiationByIdQuery, updateNegotiationQuery, validateNegotiationDoesntExistQuery, validateUserHasBalanceQuery } from "../repositories/negotiations.repositories.js";
 
 export async function validateNegotiationDoesntExistService(negotiation: Negotiation): Promise<void> {
 
@@ -36,7 +35,7 @@ export async function getAllNegotiationsService() {
 
 }
 
-export async function getNegotiationByIdService(id: number): Promise<negotiations> {
+export async function getNegotiationByIdService(id: number) {
 
     const negotiation = await getNegotiationByIdQuery(id)
 
@@ -51,5 +50,11 @@ export async function getNegotiationByIdService(id: number): Promise<negotiation
 export async function updateNegotiatonService(negotiation: Negotiation, id: number): Promise<void> {
 
     await updateNegotiationQuery(negotiation, id)
+
+}
+
+export async function deleteNegotiationService(id: number): Promise<void> {
+
+    await deleteNegotiationQuery(id)
 
 }

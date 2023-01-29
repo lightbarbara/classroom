@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Negotiation } from "../protocols/negotiations.protocols.js";
-import { createNegotiationService, getAllNegotiationsService, getNegotiationByIdService, updateNegotiatonService } from "../services/negotiations.services.js";
+import { createNegotiationService, deleteNegotiationService, getAllNegotiationsService, getNegotiationByIdService, updateNegotiatonService } from "../services/negotiations.services.js";
 
 export async function createNegotiation(req: Request, res: Response): Promise<void> {
 
@@ -73,5 +73,18 @@ export async function updateNegotiation(req: Request, res: Response): Promise<vo
 }
 
 export async function deleteNegotiation(req: Request, res: Response): Promise<void> {
-    
+
+    const { id } = req.params
+
+    try {
+
+        await deleteNegotiationService(parseInt(id))
+
+        res.sendStatus(204)
+
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
+
+
 }

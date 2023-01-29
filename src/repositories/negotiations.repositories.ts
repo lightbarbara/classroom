@@ -76,10 +76,33 @@ export async function getAllNegotiationsQuery() {
     return negotiations
 }
 
-export async function getNegotiationByIdQuery(id: number): Promise<negotiations> {
+export async function getNegotiationByIdQuery(id: number) {
     const negotiation = await prisma.negotiations.findFirst({
         where: {
             id
+        },
+        select: {
+            id: true,
+            status: true,
+            rating: true,
+            houses: {
+                select: {
+                    cep: true,
+                    price: true
+                }
+            },
+            buyers: {
+                select: {
+                    name: true,
+                    balance: true
+                }
+            },
+            realtors: {
+                select: {
+                    name: true,
+                    salesCommission: true
+                }
+            }
         }
     })
     return negotiation
@@ -89,5 +112,11 @@ export async function updateNegotiationQuery(negotiation: Negotiation, id: numbe
     await prisma.negotiations.update({
         where: { id },
         data: negotiation
+    })
+}
+
+export async function deleteNegotiationQuery(id: number): Promise<void> {
+    await prisma.negotiations.delete({
+        where: { id }
     })
 }
