@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Realtor } from "../protocols/realtors.protocols";
-import { createRealtorService, getAllRealtorsService, getRealtorByIdService } from "../services/realtors.services";
+import { createRealtorService, getAllRealtorsService, getRealtorByIdService, updateRealtorService } from "../services/realtors.services";
 
 export async function createRealtor(req: Request, res: Response): Promise<void> {
 
@@ -55,6 +55,20 @@ export async function getRealtorById(req: Request, res: Response) {
 }
 
 export async function updateRealtor(req: Request, res: Response) {
+
+    const realtor = req.body as Realtor
+
+    const { id } = req.params
+
+    try {
+
+        await updateRealtorService(realtor, parseInt(id))
+
+        res.sendStatus(200)
+
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 
 }
 

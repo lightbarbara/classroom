@@ -30,3 +30,10 @@ export async function getRealtorByIdQuery(id: number): Promise<realtors> {
     })
     return realtor
 }
+
+export async function updateRealtorQuery(realtor: Realtor, id: number): Promise<void> {
+    await prisma.realtors.update({
+        where: { id },
+        data: realtor
+    })
+}

@@ -1,6 +1,6 @@
 import { realtors } from "@prisma/client";
 import { Realtor } from "../protocols/realtors.protocols.js";
-import { createRealtorQuery, getAllRealtorsQuery, getRealtorByCpfQuery, getRealtorByIdQuery } from "../repositories/realtors.repositories.js";
+import { createRealtorQuery, getAllRealtorsQuery, getRealtorByCpfQuery, getRealtorByIdQuery, updateRealtorQuery } from "../repositories/realtors.repositories.js";
 
 export async function getRealtorByCpfService(cpf: string, id): Promise<realtors> {
     const cpfExistsOnRealtors = await getRealtorByCpfQuery(cpf)
@@ -42,7 +42,9 @@ export async function getRealtorByIdService(id: number): Promise<realtors> {
 
 }
 
-export async function updateRealtorService(): Promise<void> {
+export async function updateRealtorService(realtor: Realtor, id: number): Promise<void> {
+
+    await updateRealtorQuery(realtor, id)
 
 }
 
