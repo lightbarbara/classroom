@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express"
-import { gethouseByIdService } from "../services/houses.services"
+import { getHouseByIdService } from "../services/houses.services"
 
 export async function validateHouseId(req: Request, res: Response, next: NextFunction): Promise<Response> {
 
@@ -7,7 +7,7 @@ export async function validateHouseId(req: Request, res: Response, next: NextFun
 
     try {
 
-        await gethouseByIdService(parseInt(id))
+        await getHouseByIdService(parseInt(id))
 
         next()
 
