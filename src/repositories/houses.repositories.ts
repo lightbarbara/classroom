@@ -28,3 +28,9 @@ export async function updateHouseQuery(house: House, id: number): Promise<void> 
         data: house
     })
 }
+
+export async function deleteHouseQuery(id: number): Promise<void> {
+    await prisma.houses.delete({
+        where: { id }
+    })
+}
