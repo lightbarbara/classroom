@@ -22,7 +22,7 @@ export async function createRealtorService(realtor: Realtor): Promise<void> {
 
 }
 
-export async function getAllRealtorsService() {
+export async function getAllRealtorsService(): Promise<realtors[]> {
 
     const realtors = await getAllRealtorsQuery()
 
@@ -30,7 +30,7 @@ export async function getAllRealtorsService() {
 
 }
 
-export async function getRealtorByIdService(id: number) {
+export async function getRealtorByIdService(id: number): Promise<realtors> {
 
     const realtor = await getRealtorByIdQuery(id)
 
@@ -42,10 +42,10 @@ export async function getRealtorByIdService(id: number) {
 
 }
 
-export function updateRealtorService() {
+export async function updateRealtorService(): Promise<void> {
 
 }
 
-export function deleteRealtorService() {
+export async function deleteRealtorService(): Promise<void> {
 
 }
