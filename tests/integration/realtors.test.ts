@@ -1,7 +1,6 @@
 import faker from "@faker-js/faker";
 import prisma from "database/db"
 import { generateCPF } from "@brazilian-utils/brazilian-utils";
-import { Realtor } from "protocols/realtors.protocols"
 import supertest from "supertest"
 import app from "../../src/app"
 import { createRealtor } from "../factories/realtors.factory";
@@ -43,13 +42,13 @@ describe('POST /realtors', () => {
 
         delete realtor.id
 
-        let newBuyer = {
+        let newRealtor = {
             name: faker.name.findName(),
             cpf: realtor.cpf,
             salesCommission: faker.datatype.float({ min: 0, max: 1 })
         }
 
-        const result = await supertest(app).post('/realtors').send(newBuyer)
+        const result = await supertest(app).post('/realtors').send(newRealtor)
 
         expect(result.status).toBe(409)
     })
