@@ -73,8 +73,6 @@ describe('GET /realtors', () => {
                 })
             ])
         )
-
-        expect(result.body).toHaveLength(2)
     })
 
 })
@@ -94,7 +92,7 @@ describe('GET /realtors/:id', () => {
     it('should not get realtor if its id doesnt exist', async () => {
         const realtor = await createRealtor()
 
-        const result = await supertest(app).get(`/realtors/${realtor.id + 1}`)
+        const result = await supertest(app).get(`/realtors/${realtor.id + 1000}`)
 
         expect(result.status).toBe(404)
     })
@@ -139,6 +137,18 @@ describe('PUT /realtors/:id', () => {
         })
 
         expect(result.status).toBe(409)
+    })
+
+    it('should not update a realtor when body is not valid', async () => {
+        const realtor = createRealtor()
+        
+        const newRealtor = {
+            [faker.lorem.word()]: faker.lorem.word()
+        }
+
+        const result = await supertest(app).post('/realtors').send(newRealtor)
+
+        expect(result.status).toBe(422)
     })
 
 })

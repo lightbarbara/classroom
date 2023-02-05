@@ -38,7 +38,7 @@ export async function validateUserHasBalance(req: Request, res: Response, next: 
     } catch (err) {
 
         if (err.name === 'notEnough') {
-            res.sendStatus(406)
+            res.sendStatus(402)
         }
 
         res.status(500).send(err.message)

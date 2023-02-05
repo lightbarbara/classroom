@@ -5,7 +5,16 @@ export async function createHouse() {
     return prisma.houses.create({
         data: {
             cep: '12345678',
-            price: faker.datatype.number()
+            price: 200
+        }
+    })
+}
+
+export async function createExpensiveHouse() {
+    return prisma.houses.create({
+        data: {
+            cep: '12345678',
+            price: 2000000
         }
     })
 }

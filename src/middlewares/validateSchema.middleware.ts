@@ -16,7 +16,7 @@ export default function validateSchemaMiddleware(schema: ObjectSchema) {
 
             }
         } catch (err) {
-            res.status(500).send(err.message)
+            res.status(422).send(err.message)
         }
 
         next()

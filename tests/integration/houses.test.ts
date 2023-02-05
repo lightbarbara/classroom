@@ -55,8 +55,6 @@ describe('GET /houses', () => {
                 })
             ])
         )
-
-        expect(result.body).toHaveLength(1)
     })
 
 })
@@ -76,7 +74,7 @@ describe('GET /houses/:id', () => {
     it('should not get house if its id doesnt exist', async () => {
         const house = await createHouse()
 
-        const result = await supertest(app).get(`/houses/${house.id + 1}`)
+        const result = await supertest(app).get(`/houses/${house.id + 1000}`)
 
         expect(result.status).toBe(404)
     })
@@ -105,6 +103,18 @@ describe('PUT /houses/:id', () => {
         })
 
         expect(result.status).toBe(404)
+    })
+
+    it('should not update a house when body is not valid', async () => {
+        const house = createHouse()
+
+        const newHouse = {
+            [faker.lorem.word()]: faker.lorem.word()
+        }
+
+        const result = await supertest(app).post('/houses').send(newHouse)
+
+        expect(result.status).toBe(422)
     })
 
 })

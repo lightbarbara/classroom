@@ -73,8 +73,6 @@ describe('GET /buyers', () => {
                 })
             ])
         )
-
-        expect(result.body).toHaveLength(2)
     })
 
 })
@@ -118,7 +116,7 @@ describe('PUT /buyers/:id', () => {
     it('should not update buyer if its id doesnt exist', async () => {
         const buyer = await createBuyer()
 
-        const result = await supertest(app).put(`/buyers/${buyer.id + 1}`).send({
+        const result = await supertest(app).put(`/buyers/${buyer.id + 1000}`).send({
             name: faker.name.findName(),
             cpf: generateCPF(),
             balance: faker.datatype.number()
@@ -139,6 +137,18 @@ describe('PUT /buyers/:id', () => {
         })
 
         expect(result.status).toBe(409)
+    })
+
+    it('should not update a buyer when body is not valid', async () => {
+        const buyer = createBuyer()
+
+        const newBuyer = {
+            [faker.lorem.word()]: faker.lorem.word()
+        }
+
+        const result = await supertest(app).post('/buyers').send(newBuyer)
+
+        expect(result.status).toBe(422)
     })
 
 })

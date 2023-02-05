@@ -7,7 +7,7 @@ export async function createBuyer() {
         data: {
             name: faker.name.findName(),
             cpf: generateCPF(),
-            balance: faker.datatype.number()
+            balance: 20000
         }
     })
 }
