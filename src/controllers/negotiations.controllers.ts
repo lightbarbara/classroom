@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Negotiation } from "../protocols/negotiations.protocols.js";
-import { createNegotiationService, deleteNegotiationService, getAllNegotiationsService, getNegotiationByIdService, updateNegotiatonService } from "../services/negotiations.services.js";
+import { Negotiation } from "../protocols/negotiations.protocols";
+import { createNegotiationService, deleteNegotiationService, getAllNegotiationsService, getNegotiationByIdService, updateNegotiatonService } from "../services/negotiations.services";
 
 export async function createNegotiation(req: Request, res: Response): Promise<void> {
 

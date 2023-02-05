@@ -1,5 +1,5 @@
 import joi, { ObjectSchema } from 'joi'
-import { Negotiation } from "../protocols/negotiations.protocols.js";
+import { Negotiation } from "../protocols/negotiations.protocols";
 
 export const negotiationSchema: ObjectSchema<Negotiation> = joi.object({
     houseId: joi.number().required(),

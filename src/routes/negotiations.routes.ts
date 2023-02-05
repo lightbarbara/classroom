@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { createNegotiation, deleteNegotiation, getAllNegotiations, getNegotiationById, updateNegotiation } from "../controllers/negotiations.controllers.js";
-import { validateBuyerId } from "../middlewares/buyers.middlewares.js";
-import { validateHouseId } from "../middlewares/houses.middlewares.js";
-import { validateNegotiationDoesntExist, validateNegotiationId, validateUserHasBalance } from "../middlewares/negotiations.middleware.js";
-import { validateRealtorId } from "../middlewares/realtors.middlwares.js";
-import validateSchemaMiddleware from "../middlewares/validateSchema.middleware.js";
-import { negotiationSchema } from "../schemas/negotiation.schema.js";
+import { createNegotiation, deleteNegotiation, getAllNegotiations, getNegotiationById, updateNegotiation } from "../controllers/negotiations.controllers";
+import { validateBuyerId } from "../middlewares/buyers.middlewares";
+import { validateHouseId } from "../middlewares/houses.middlewares";
+import { validateNegotiationDoesntExist, validateNegotiationId, validateUserHasBalance } from "../middlewares/negotiations.middleware";
+import { validateRealtorId } from "../middlewares/realtors.middlwares";
+import validateSchemaMiddleware from "../middlewares/validateSchema.middleware";
+import { negotiationSchema } from "../schemas/negotiation.schema";
 
 const router = Router()
 

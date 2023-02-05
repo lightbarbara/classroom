@@ -1,6 +1,6 @@
 import { buyers } from "@prisma/client";
-import prisma from "../database/db.js";
-import { Buyer } from "../protocols/buyers.protocols.js";
+import prisma from "../database/db";
+import { Buyer } from "../protocols/buyers.protocols";
 
 export async function getBuyerByCpfQuery(cpf: string): Promise<buyers> {
     const buyer = await prisma.buyers.findFirst({

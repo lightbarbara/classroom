@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { House } from "../protocols/houses.protocols.js";
-import { createHouseService, deleteHouseService, getAllHousesService, getHouseByIdService, updateHouseService } from "../services/houses.services.js";
+import { House } from "../protocols/houses.protocols";
+import { createHouseService, deleteHouseService, getAllHousesService, getHouseByIdService, updateHouseService } from "../services/houses.services";
 
 export async function createHouse(req: Request, res: Response): Promise<void> {
 

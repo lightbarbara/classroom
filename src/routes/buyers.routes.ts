@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { createBuyer, deleteBuyer, getAllBuyers, getBuyerById, updateBuyer } from "../controllers/buyers.controllers.js";
-import { validateBuyerId } from "../middlewares/buyers.middlewares.js";
-import validateCpf from "../middlewares/validateCpf.middleware.js";
-import validateSchemaMiddleware from "../middlewares/validateSchema.middleware.js";
-import { buyerSchema } from "../schemas/buyer.schema.js";
+import { createBuyer, deleteBuyer, getAllBuyers, getBuyerById, updateBuyer } from "../controllers/buyers.controllers";
+import { validateBuyerId } from "../middlewares/buyers.middlewares";
+import validateCpf from "../middlewares/validateCpf.middleware";
+import validateSchemaMiddleware from "../middlewares/validateSchema.middleware";
+import { buyerSchema } from "../schemas/buyer.schema";
 
 const router = Router()
 

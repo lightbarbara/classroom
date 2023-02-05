@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { getRealtorByIdService } from "../services/realtors.services.js";
+import { getRealtorByIdService } from "../services/realtors.services";
 
 export async function validateRealtorId(req: Request, res: Response, next: NextFunction): Promise<Response> {
 

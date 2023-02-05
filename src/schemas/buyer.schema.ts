@@ -1,5 +1,5 @@
 import joi, { ObjectSchema } from 'joi'
-import { Buyer } from '../protocols/buyers.protocols.js'
+import { Buyer } from '../protocols/buyers.protocols'
 
 export const buyerSchema: ObjectSchema<Buyer> = joi.object({
     name: joi.string().required(),

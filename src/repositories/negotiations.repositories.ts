@@ -1,6 +1,6 @@
 import { negotiations } from "@prisma/client";
-import prisma from "../database/db.js";
-import { Negotiation } from "../protocols/negotiations.protocols.js";
+import prisma from "../database/db";
+import { Negotiation } from "../protocols/negotiations.protocols";
 
 export async function validateNegotiationDoesntExistQuery(negotiation: Negotiation): Promise<negotiations> {
     const negotiationExists = await prisma.negotiations.findFirst({

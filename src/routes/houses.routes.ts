@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createHouse, deleteHouse, getAllHouses, getHouseById, updateHouse } from "../controllers/houses.controllers.js";
-import { validateHouseId } from "../middlewares/houses.middlewares.js";
-import validateSchemaMiddleware from "../middlewares/validateSchema.middleware.js";
-import { houseSchema } from "../schemas/house.schema.js";
+import { createHouse, deleteHouse, getAllHouses, getHouseById, updateHouse } from "../controllers/houses.controllers";
+import { validateHouseId } from "../middlewares/houses.middlewares";
+import validateSchemaMiddleware from "../middlewares/validateSchema.middleware";
+import { houseSchema } from "../schemas/house.schema";
 
 const router = Router()
 

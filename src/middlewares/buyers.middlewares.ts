@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { getBuyerByIdService } from "../services/buyers.services.js";
+import { getBuyerByIdService } from "../services/buyers.services";
 
 export async function validateBuyerId(req: Request, res: Response, next: NextFunction): Promise<Response> {
 

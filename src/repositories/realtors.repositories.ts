@@ -1,6 +1,6 @@
 import { realtors } from "@prisma/client";
-import prisma from "../database/db.js";
-import { Realtor } from "../protocols/realtors.protocols.js";
+import prisma from "../database/db";
+import { Realtor } from "../protocols/realtors.protocols";
 
 export async function getRealtorByCpfQuery(cpf: string): Promise<realtors> {
     const data = await prisma.realtors.findFirst({

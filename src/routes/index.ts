@@ -1,7 +1,7 @@
-import negotiationsRoutes from './negotiations.routes.js'
-import buyersRoutes from './buyers.routes.js'
-import realtorsRoutes from './realtors.routes.js'
-import housesRoutes from './houses.routes.js'
+import negotiationsRoutes from './negotiations.routes'
+import buyersRoutes from './buyers.routes'
+import realtorsRoutes from './realtors.routes'
+import housesRoutes from './houses.routes'
 
 import { Router } from 'express'
 

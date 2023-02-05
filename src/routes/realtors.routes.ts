@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { createRealtor, deleteRealtor, getAllRealtors, getRealtorById, updateRealtor } from "../controllers/realtors.controllers.js";
-import { validateRealtorId } from "../middlewares/realtors.middlwares.js";
-import validateCpf from "../middlewares/validateCpf.middleware.js";
-import validateSchemaMiddleware from "../middlewares/validateSchema.middleware.js";
-import { realtorSchema } from "../schemas/realtor.schema.js";
+import { createRealtor, deleteRealtor, getAllRealtors, getRealtorById, updateRealtor } from "../controllers/realtors.controllers";
+import { validateRealtorId } from "../middlewares/realtors.middlwares";
+import validateCpf from "../middlewares/validateCpf.middleware";
+import validateSchemaMiddleware from "../middlewares/validateSchema.middleware";
+import { realtorSchema } from "../schemas/realtor.schema";
 
 const router = Router()
 

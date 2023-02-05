@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Buyer } from "../protocols/buyers.protocols.js";
-import { createBuyerService, deleteBuyerService, getAllBuyersService, getBuyerByIdService, updateBuyerService } from "../services/buyers.services.js";
+import { Buyer } from "../protocols/buyers.protocols";
+import { createBuyerService, deleteBuyerService, getAllBuyersService, getBuyerByIdService, updateBuyerService } from "../services/buyers.services";
 
 export async function createBuyer(req: Request, res: Response): Promise<void> {
 

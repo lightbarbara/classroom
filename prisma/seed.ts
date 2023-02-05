@@ -1,4 +1,4 @@
-import prisma from "../src/database/db.js"
+import prisma from "../src/database/db"
 
 async function main() {
     await prisma.buyers.createMany({

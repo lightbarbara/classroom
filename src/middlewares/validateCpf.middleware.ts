@@ -1,6 +1,6 @@
 import { NextFunction, Request, response, Response } from "express";
-import { getBuyerByCpfService } from "../services/buyers.services.js";
-import { getRealtorByCpfService } from "../services/realtors.services.js";
+import { getBuyerByCpfService } from "../services/buyers.services";
+import { getRealtorByCpfService } from "../services/realtors.services";
 
 export default async function validateCpf(req: Request, res: Response, next: NextFunction): Promise<Response> {
 

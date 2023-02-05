@@ -1,6 +1,6 @@
 import { houses } from "@prisma/client"
-import prisma from "../database/db.js";
-import { House } from "../protocols/houses.protocols.js";
+import prisma from "../database/db";
+import { House } from "../protocols/houses.protocols";
 
 export async function createHouseQuery(house: House): Promise<void> {
     await prisma.houses.create({

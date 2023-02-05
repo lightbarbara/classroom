@@ -1,5 +1,5 @@
-import { Negotiation } from "../protocols/negotiations.protocols.js";
-import { createNegotiationQuery, deleteNegotiationQuery, getAllNegotiationsQuery, getNegotiationByIdQuery, updateNegotiationQuery, validateNegotiationDoesntExistQuery, validateUserHasBalanceQuery } from "../repositories/negotiations.repositories.js";
+import { Negotiation } from "../protocols/negotiations.protocols";
+import { createNegotiationQuery, deleteNegotiationQuery, getAllNegotiationsQuery, getNegotiationByIdQuery, updateNegotiationQuery, validateNegotiationDoesntExistQuery, validateUserHasBalanceQuery } from "../repositories/negotiations.repositories";
 
 export async function validateNegotiationDoesntExistService(negotiation: Negotiation): Promise<void> {
 

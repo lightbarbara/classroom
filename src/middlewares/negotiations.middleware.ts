@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { Negotiation } from "../protocols/negotiations.protocols.js";
-import { getNegotiationByIdService, validateNegotiationDoesntExistService, validateUserHasBalanceService } from "../services/negotiations.services.js";
+import { Negotiation } from "../protocols/negotiations.protocols";
+import { getNegotiationByIdService, validateNegotiationDoesntExistService, validateUserHasBalanceService } from "../services/negotiations.services";
 
 export async function validateNegotiationDoesntExist(req: Request, res: Response, next: NextFunction): Promise<void> {
 
