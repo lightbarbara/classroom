@@ -100,3 +100,65 @@ describe('GET /buyers/:id', () => {
     })
 
 })
+
+describe('PUT /buyers/:id', () => {
+
+    it('should update a buyer by its id', async () => {
+        const buyer = await createBuyer()
+
+        const result = await supertest(app).put(`/buyers/${buyer.id}`).send({
+            name: faker.name.findName(),
+            cpf: generateCPF(),
+            balance: faker.datatype.number()
+        })
+
+        expect(result.status).toBe(200)
+    })
+
+    it('should not update buyer if its id doesnt exist', async () => {
+        const buyer = await createBuyer()
+
+        const result = await supertest(app).put(`/buyers/${buyer.id + 1}`).send({
+            name: faker.name.findName(),
+            cpf: generateCPF(),
+            balance: faker.datatype.number()
+        })
+
+        expect(result.status).toBe(404)
+    })
+
+    it('should not update buyer if its cpf update corresponds to another user', async () => {
+        const buyer = await createBuyer()
+
+        const newBuyer = await createBuyer()
+
+        const result = await supertest(app).put(`/buyers/${newBuyer.id}`).send({
+            name: faker.name.findName(),
+            cpf: buyer.cpf,
+            balance: faker.datatype.number()
+        })
+
+        expect(result.status).toBe(409)
+    })
+
+})
+
+describe('DELETE /buyers/:id', () => {
+
+    it('should delete a buyer by its id', async () => {
+        const buyer = await createBuyer()
+
+        const result = await supertest(app).delete(`/buyers/${buyer.id}`)
+
+        expect(result.status).toBe(204)
+    })
+
+    it('should not delete a buyer if its id doesnt exist', async () => {
+        const buyer = await createBuyer()
+
+        const result = await supertest(app).delete(`/buyers/${buyer.id+1}`)
+
+        expect(result.status).toBe(404)
+    })
+
+})

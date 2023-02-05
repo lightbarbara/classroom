@@ -20,7 +20,7 @@ describe('POST /realtors', () => {
         let realtor = {
             name: faker.name.findName(),
             cpf: generateCPF(),
-            salesCommission: faker.datatype.number()
+            salesCommission: faker.datatype.float({ min: 0, max: 1 })
         }
 
         const result = await supertest(app).post('/realtors').send(realtor)
@@ -46,7 +46,7 @@ describe('POST /realtors', () => {
         let newBuyer = {
             name: faker.name.findName(),
             cpf: realtor.cpf,
-            salesCommission: faker.datatype.number()
+            salesCommission: faker.datatype.float({ min: 0, max: 1 })
         }
 
         const result = await supertest(app).post('/realtors').send(newBuyer)
@@ -96,6 +96,68 @@ describe('GET /realtors/:id', () => {
         const realtor = await createRealtor()
 
         const result = await supertest(app).get(`/realtors/${realtor.id + 1}`)
+
+        expect(result.status).toBe(404)
+    })
+
+})
+
+describe('PUT /realtors/:id', () => {
+
+    it('should update a realtor by its id', async () => {
+        const realtor = await createRealtor()
+
+        const result = await supertest(app).put(`/realtors/${realtor.id}`).send({
+            name: faker.name.findName(),
+            cpf: generateCPF(),
+            salesCommission: faker.datatype.float({ min: 0, max: 1 })
+        })
+
+        expect(result.status).toBe(200)
+    })
+
+    it('should not update realtor if its id doesnt exist', async () => {
+        const realtor = await createRealtor()
+
+        const result = await supertest(app).put(`/realtors/${realtor.id + 1}`).send({
+            name: faker.name.findName(),
+            cpf: generateCPF(),
+            salesCommission: faker.datatype.float({ min: 0, max: 1 })
+        })
+
+        expect(result.status).toBe(404)
+    })
+
+    it ('should not update realtor if its cpf update corresponds to another user', async () => {
+        const realtor = await createRealtor()
+
+        const newRealtor = await createRealtor()
+
+        const result = await supertest(app).put(`/realtors/${newRealtor.id}`).send({
+            name: faker.name.findName(),
+            cpf: realtor.cpf,
+            salesCommission: faker.datatype.float({ min: 0, max: 1 })
+        })
+
+        expect(result.status).toBe(409)
+    })
+
+})
+
+describe('DELETE /realtors/:id', () => {
+
+    it('should delete a realtor by its id', async () => {
+        const realtor = await createRealtor()
+
+        const result = await supertest(app).delete(`/realtors/${realtor.id}`)
+
+        expect(result.status).toBe(204)
+    })
+
+    it('should not delete a realtor if its id doesnt exist', async () => {
+        const realtor = await createRealtor()
+
+        const result = await supertest(app).delete(`/realtors/${realtor.id + 1}`)
 
         expect(result.status).toBe(404)
     })
