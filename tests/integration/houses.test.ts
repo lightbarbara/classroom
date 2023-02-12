@@ -6,6 +6,7 @@ import app from "../../src/app"
 import { createHouse } from "../factories/houses-factory";
 
 beforeAll(async () => {
+    await prisma.negotiations.deleteMany()
     await prisma.houses.deleteMany()
 })
 
